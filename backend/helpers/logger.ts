@@ -1,4 +1,4 @@
-import { createLogger, format, transports } from "winston";
+import { createLogger, format, transports } from 'winston';
 
 const logLevels = {
   fatal: 0,
@@ -10,11 +10,10 @@ const logLevels = {
 };
 
 const logFormat = format.combine(
-  format.timestamp({ format: "DD.MM.YYYY HH:mm:ss a" }),
+  format.timestamp({ format: 'DD.MM.YYYY HH:mm:ss a' }),
   format.prettyPrint(),
   format.printf(
     (content) =>
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       `[${content.timestamp}] - [${content.level.toUpperCase()}] [${
         content.context
       }] - ${content.message}`
@@ -25,7 +24,7 @@ const logger = createLogger({
   levels: logLevels,
   format: logFormat,
   defaultMeta: {
-    service: "process",
+    service: 'process',
   },
   transports: [new transports.Console()],
   exceptionHandlers: [

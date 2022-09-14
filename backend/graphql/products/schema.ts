@@ -1,14 +1,14 @@
-/* eslint-disable */
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 export const schema: any = gql`
   type Query {
     getProducts(paginated: Paginated, filter: FilterProduct): PaginatedProduct
+    getProduct(input: InputGetProduct): Product
   }
 
   type Mutation {
     addProduct(input: InputAddProduct): Product
-    # updProduct(input: InputUpdProduct): Product
+    updProduct(input: InputUpdProduct): Product
   }
 
   scalar Timestamp
@@ -26,24 +26,31 @@ export const schema: any = gql`
     updatedAt: Timestamp
     createdAt: Timestamp
   }
+  input InputGetProduct {
+    id: ID!
+  }
 
   input InputAddProduct {
     name: String!
     category: InputCategory!
     brand: InputBrand!
     slug: String!
+    status: String
   }
+
   input InputUpdProduct {
-    name: String!
-    category: InputCategory!
-    brand: InputBrand!
-    slug: String!
-    status: String!
+    id: ID!
+    name: String
+    category: InputCategory
+    brand: InputBrand
+    slug: String
+    status: String
+    isVisible: Boolean
   }
 
   type PageInfo {
     total: Int
-    currentPage: Int
+    page: Int
     perPage: Int
     hasPreviousPage: Boolean
     hasNextPage: Boolean
@@ -61,6 +68,7 @@ export const schema: any = gql`
     brand: Brand
     slug: String
     status: String
+    isVisible: Boolean
     createdAt: Timestamp
     updatedAt: Timestamp
   }
