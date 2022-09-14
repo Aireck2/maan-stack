@@ -10,7 +10,6 @@ const config = {
   server: {
     stage: process.env.NODE_ENV!,
     env: process.env.ENV || "dev",
-    host: process.env.stage || "localhost",
     port: process.env.SERVER_PORT || 9090,
   },
 };
