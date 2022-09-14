@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IProduct {
   name: string;
@@ -10,17 +10,17 @@ export interface IProduct {
   updatedAt: Date;
 }
 
-interface ICategory {
+export interface ICategory {
   name: string;
   slug: string;
 }
 
-interface IBrand {
+export interface IBrand {
   name: string;
   slug: string;
 }
 
-const Status = ["active", "inactive"];
+const Status = ['active', 'most-sold', 'least-sold', 'expiring', 'expired'];
 
 export interface IProductModel extends IProduct, Document {}
 
@@ -35,14 +35,18 @@ const BrandSchema: Schema = new Schema({
 
 const ProductSchema: Schema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String },
     category: CategorySchema,
     brand: BrandSchema,
-    slug: { type: String, required: true },
+    slug: { type: String },
     status: {
       type: String,
-      default: "active",
+      default: 'active',
       enum: Status,
+    },
+    isVisible: {
+      type: Boolean,
+      default: true,
     },
     createdAt: {
       type: Date,
@@ -59,4 +63,4 @@ const ProductSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.model<IProductModel>("Product", ProductSchema);
+export default mongoose.model<IProductModel>('Product', ProductSchema);
