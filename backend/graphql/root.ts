@@ -32,7 +32,7 @@ const rootTypeDefs = gql`
 
   type PageInfo {
     total: Int
-    currentPage: Int
+    page: Int
     perPage: Int
     hasPreviousPage: Boolean
     hasNextPage: Boolean
