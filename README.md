@@ -2,22 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
 
+## 🚀 Build instructions / How to start the project
 
-## 🚀 Build instructions / How to start the project 
+1. Downloard/clone the git repository
+2. Open terminal/command prompt
+3. cd (change directory) into the project folder
+4. Run `npm install` in your terminal
+5. Run `ng serve` to run the Angular frontend
+6. Open your browser and navigate to `http://localhost:4200/`
+7. To run the backend: cd (change directory) to ./backend folder.
 
-1) Downloard/clone the Contributor branch of the repository
-2) Open terminal/command prompt 
-3) cd (change directory) in to the project folder
-4) Run `npm install` in your terminal
-5) Run `ng serve` to run the Angular frontend
-6) Run `npm run start:server` to run the backend Node server
-7) Open your browser and navigate to `http://localhost:4200/`
+   **Make sure to add yours env vars in .env file as is shown in .env.test file**
 
+8. Run `npm install`, then `npm run dev` to run the backend server
 
 ## 🚨 Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `npm run start:serve` for a backend server. Navigate to `http://localhost:3000/`. 
+Run `npm run dev` for a backend server. Navigate to `http://localhost:9090/graphql`.
 
 ## 🚨 Code scaffolding
 
