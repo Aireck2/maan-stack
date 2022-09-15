@@ -5,8 +5,8 @@ export const menuItems = [
     label: 'Dashboard',
   },
   {
-    key: 'product',
-    icon: 'fal fa-home',
+    key: 'products',
+    icon: 'fal fa-tags',
     label: 'Products',
   },
 ];
