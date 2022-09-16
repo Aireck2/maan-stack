@@ -42,8 +42,23 @@ input InputCategory {
   slug: String!
 }
 
+input InputGetProduct {
+  _id: String!
+}
+
+input InputUpdProduct {
+  _id: String!
+  brand: InputBrand
+  category: InputCategory
+  isVisible: Boolean
+  name: String
+  slug: String
+  status: String
+}
+
 type Mutation {
   addProduct(input: InputAddProduct!): Product!
+  updProduct(input: InputUpdProduct!): Product!
 }
 
 type PageInfo {
@@ -67,15 +82,18 @@ type PaginatedProduct {
 }
 
 type Product {
-  _id: ID!
-  brand: Brand!
-  category: Category!
+  _id: ID
+  brand: Brand
+  category: Category
+  createdAt: DateTime
   isVisible: Boolean
-  name: String!
-  slug: String!
-  status: String!
+  name: String
+  slug: String
+  status: String
+  updatedAt: DateTime
 }
 
 type Query {
+  getProduct(input: InputGetProduct!): Product!
   getProducts(filter: FilterProduct, paginated: Paginated!): PaginatedProduct!
 }
