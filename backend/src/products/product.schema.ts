@@ -39,6 +39,12 @@ export class Product {
 
   @Prop()
   isVisible: boolean;
+
+  @Prop({ type: Date, default: Date.now })
+  createdAt: Date;
+
+  @Prop({ type: Date, default: Date.now, set: () => Date.now() })
+  updatedAt: Date;
 }
 
 export type ProductDocument = Product & mongoose.Document;
