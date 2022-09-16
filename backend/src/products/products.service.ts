@@ -1,10 +1,14 @@
 import { Product, ProductDocument } from './product.schema';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { PaginatedProduct } from './product.entity';
-import { InputAddProduct } from './dto/create-product.input';
+import {
+  InputAddProduct,
+  InputGetProduct,
+  InputUpdProduct,
+} from './dto/create-product.input';
 import { FilterProduct, Paginated } from './dto/get-product.input';
 import { escapeRegExp } from 'src/helpers/utils';
 
@@ -75,6 +79,15 @@ export class ProductsService {
 
     return { pageInfo, products };
   }
+
+  async obtain(input: InputGetProduct) {
+    const product = await this.productModel.findOne({ _id: input._id });
+    if (!product) {
+      throw new NotFoundException('product.notFound');
+    }
+    return product;
+  }
+
   async create(input: InputAddProduct): Promise<Product> {
     const struct = {
       ...input,
@@ -84,5 +97,15 @@ export class ProductsService {
 
     const newProduct = new this.productModel(struct);
     return newProduct.save();
+  }
+
+  async update(input: InputUpdProduct) {
+    const product = await this.productModel.findOne({ _id: input._id });
+    if (!product) {
+      throw new NotFoundException('product.notFound');
+    }
+
+    product.set({ ...input });
+    return await product.save();
   }
 }
