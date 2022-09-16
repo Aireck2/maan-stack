@@ -1,0 +1,81 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Brand {
+  name: String!
+  slug: String!
+}
+
+type Category {
+  name: String!
+  slug: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input FilterProduct {
+  createdAt: DateTime
+  q: String
+  status: String
+  updatedAt: DateTime
+}
+
+input InputAddProduct {
+  brand: InputBrand!
+  category: InputCategory!
+  name: String!
+  slug: String!
+  status: String!
+}
+
+input InputBrand {
+  name: String!
+  slug: String!
+}
+
+input InputCategory {
+  name: String!
+  slug: String!
+}
+
+type Mutation {
+  addProduct(input: InputAddProduct!): Product!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  page: Int!
+  perPage: Int!
+  total: Int!
+}
+
+input Paginated {
+  page: Float!
+  perPage: Float
+  sortField: String
+  sortOrder: String
+}
+
+type PaginatedProduct {
+  pageInfo: PageInfo!
+  products: [Product!]!
+}
+
+type Product {
+  _id: ID!
+  brand: Brand!
+  category: Category!
+  isVisible: Boolean
+  name: String!
+  slug: String!
+  status: String!
+}
+
+type Query {
+  getProducts(filter: FilterProduct, paginated: Paginated!): PaginatedProduct!
+}
