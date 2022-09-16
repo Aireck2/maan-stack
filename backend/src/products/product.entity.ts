@@ -19,24 +19,30 @@ export class Brand {
 
 @ObjectType()
 export class Product {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   _id: Schema.Types.ObjectId;
 
-  @Field(() => Category)
+  @Field(() => Category, { nullable: true })
   category: Category;
-  @Field(() => Brand)
+  @Field(() => Brand, { nullable: true })
   brand: Brand;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   status: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   name: string;
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   slug: string;
 
   @Field(() => Boolean, { nullable: true })
   isVisible?: boolean;
+
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date;
+
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date;
 }
 
 @ObjectType()
